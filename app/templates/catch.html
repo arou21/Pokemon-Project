@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <h1>catch</h1>
+
+    <form method="POST" class="container col-4">
+        {{ form.hidden_tag() }}
+        {{ form.pokname(class='form-control', placeholder='pokname') }}
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+   <p>{{ message }}</p>
+   {% if name %}
+    <img src="{{ image }}">
+    <p> Ability: {{ ability }} </p>
+    <p> Base Experience: {{ base_experience }} </p>
+    {% endif %}
+
+
+{% endblock %}

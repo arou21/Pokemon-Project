@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Profile Page</h1>
+
+    <form method="POST" class="container col-4">
+        {{ form.hidden_tag() }}
+    
+        {{ form.first_name(class='form-control', placeholder= current_user.first_name) }}
+        
+        {{ form.last_name(class='form-control', placeholder='last_name') }}
+        {{ form.gender(class='form-control', placeholder='gender') }}
+        {{ form.age(class='form-control', placeholder='age') }}
+        
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+    <h2>My Pokemon</h2>
+    {% if pokemon %}
+        {%for p in pokemon %}
+            <form method="POST" >
+                {{ releaseForm.submit(class='btn btn-primary') }}
+                <!-- hide the user and opponent ids -->
+                {{ releaseForm.pokemon(type='hidden', value=p.id) }}
+                <!-- show the pokemon name -->
+                {{p.pokemon_type}}
+            </form>
+        {%endfor%}
+    {% else %}
+    <p> You have no pokemon, go catch some! </p>
+    {% endif %}
+
+ 
+{% endblock %}

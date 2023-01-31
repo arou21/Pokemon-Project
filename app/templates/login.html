@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h1>Login</h1>
+{{error}}
+{% for field, errors in form.errors.items() %}
+<div class="alert alert-error">
+    {{ form[field].label }}: {{ ', '.join(errors) }}
+</div>
+{% endfor %}
+<form method="POST" class="container col-4">
+    {{ form.hidden_tag() }}
+
+    {{ form.email(class='form-control', placeholder='email') }}
+    
+    {{ form.password(class='form-control', placeholder='Password') }}
+    
+    {{ form.submit(class='btn btn-primary') }}
+</form>
+
+
+
+{% endblock %}

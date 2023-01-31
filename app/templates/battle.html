@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <h1>Battle</h1>
+    <p>{{ message }}</p>
+
+    {% if opponents %}
+        {%for o in opponents %}
+        <!-- check if the opponent has pokemon to battle with -->
+            {% if o.pokemon %}
+                <p>
+                    <form method="POST" >
+                        {{ form.submit(class='btn btn-primary') }}
+                        <!-- hide the user and opponent ids -->
+                        {{ form.user(type='hidden', value=user.id) }}
+                        {{ form.opponent(type='hidden', value=o.id) }}
+                        <!-- show the opponent username -->
+                        {{ o.user_name }}
+                    |
+                    Pokemons: 
+                        <!-- show all their pokemon names -->
+                        {%for p in o.pokemon%}
+                            {{ p.pokemon_type }}, 
+                        {%endfor%}
+                    </form>
+                </p>
+            {% endif %}
+        {%endfor%}
+    {% else %}
+    <p> There is nobody to battle ... </p>
+    {% endif %}
+
+
+{% endblock %}
